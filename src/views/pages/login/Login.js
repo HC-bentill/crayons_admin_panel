@@ -19,12 +19,15 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from "react-redux";
+import { setLogin, setLogout } from "../../../features/userSlice";
+
 
 const Login = () => {
   const [username, setUserName] = useState("");
   const [ password, setPassword ] = useState("");
-  const history = useHistory();
-
+  // const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -43,9 +46,19 @@ const Login = () => {
         button: false,
         timer: 2000,
       } );
-      history.push( "/dashboard" );
+      // history.push( "/dashboard" );
       // console.log('User profile', response.data.user);
       // console.log('User token', response.data.jwt);
+
+      //dispatch action into redux userSlice
+      dispatch(
+        setLogin( {
+          username: response.data.user.username,
+          email: response.data.user.email,
+          jwt: response.data.jwt,
+        } )
+      );
+
     })
     .catch(error => {
       // Handle error.
@@ -54,7 +67,8 @@ const Login = () => {
         text: "Invalid Credentials",
         icon: "error",
       });
-      // console.log('An error occurred:', error.response);
+      console.log( 'An error occurred:', error.response );
+      dispatch(setLogout());
     });
   }
 

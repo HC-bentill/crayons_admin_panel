@@ -8,8 +8,18 @@ import {
   CImg
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { useDispatch } from "react-redux";
+import { setLogout } from "../features/userSlice";
 
 const TheHeaderDropdown = () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(
+      setLogout()
+    )
+  }
+
   return (
     <CDropdown
       inNav
@@ -80,9 +90,11 @@ const TheHeaderDropdown = () => {
           <CBadge color="primary" className="mfs-auto">42</CBadge>
         </CDropdownItem>
         <CDropdownItem divider />
-        <CDropdownItem>
-          <CIcon name="cil-lock-locked" to="/login" className="mfe-2" />
-          Lock Account
+        <CDropdownItem
+          onClick={handleLogout}
+        >
+          <CIcon name="cil-lock-locked" className="mfe-2" />
+          Logout
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>
