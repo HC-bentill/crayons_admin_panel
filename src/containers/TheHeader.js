@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSideMenu, selectSideMenu } from 'src/features/sideMenuSlice'
 import {
@@ -40,6 +40,14 @@ const TheHeader = () => {
     // dispatch({type: 'set', sidebarShow: val})
     dispatch(setSideMenu(!sideMenu))
   }
+
+  //if component mounts and screen width is more then 992px then sidebar should be true
+  useEffect( () => {
+    if ( window.innerWidth > 992 ) {
+      dispatch( setSideMenu( !sideMenu ) );
+    }  
+  },[])
+
 
   return (
     <CHeader withSubheader>
