@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/userSlice";
-// import appReducer from "../features/appSlice";
+import sideMenuReducer from "./features/sideMenuSlice";
 
-export default configureStore({
+export default configureStore( {
+  // add slice to the store
   reducer: {
     user: userReducer,
-    // app: appReducer,
+    sideMenu: sideMenuReducer,
   },
 });

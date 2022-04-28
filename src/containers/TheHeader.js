@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { setSideMenu, selectSideMenu } from 'src/features/sideMenuSlice'
 import {
   CHeader,
   CToggler,
@@ -25,16 +26,19 @@ import {
 
 const TheHeader = () => {
   const dispatch = useDispatch()
-  const sidebarShow = useSelector(state => state.sidebarShow)
+  const sideMenu = useSelector(selectSideMenu)
 
   const toggleSidebar = () => {
-    const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive'
-    dispatch({type: 'set', sidebarShow: val})
+    // const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive'
+    // dispatch({type: 'set', sidebarShow: val})
+    //get the current state of the sidebar manu using selector and use the dispatch to change it upon click
+    dispatch(setSideMenu(!sideMenu))
   }
 
   const toggleSidebarMobile = () => {
-    const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive'
-    dispatch({type: 'set', sidebarShow: val})
+    // const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive'
+    // dispatch({type: 'set', sidebarShow: val})
+    dispatch(setSideMenu(!sideMenu))
   }
 
   return (
@@ -50,18 +54,18 @@ const TheHeader = () => {
         onClick={toggleSidebar}
       />
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
-        <CIcon name="logo" height="48" alt="Logo"/>
+        <h4 className="c-sidebar-brand-full">Crayons</h4>
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
+          <CHeaderNavLink to="/dashboard">{" "}</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem  className="px-3">
-          <CHeaderNavLink to="/users">Users</CHeaderNavLink>
+          <CHeaderNavLink to="/users">{" "}</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink>Settings</CHeaderNavLink>
+          <CHeaderNavLink>{" "}</CHeaderNavLink>
         </CHeaderNavItem>
       </CHeaderNav>
 

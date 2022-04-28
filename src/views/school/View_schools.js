@@ -105,7 +105,6 @@ function View_schools () {
               sorter
               itemsPerPage={10}
               activePage={page}
-              clickableRows
               onRowClick={(item) => history.push(`/school/${item.id}`)}
             />
             <CPagination

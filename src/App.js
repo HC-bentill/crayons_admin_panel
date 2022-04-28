@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { selectUser } from "./features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "./features/userSlice";
@@ -25,7 +25,7 @@ const App = () => {
   const user = useSelector( selectUser );
   
   return (
-    <HashRouter>
+    <Router>
       <React.Suspense fallback={loading}>
           <Switch>      
             {user ? (
@@ -41,7 +41,7 @@ const App = () => {
             )}
             </Switch>
         </React.Suspense>
-    </HashRouter>
+    </Router>
   );
 }
 

@@ -24,7 +24,7 @@ const _nav = [
   {
     _tag: 'CSidebarNavItem',
     name: 'Class',
-    to: '#',
+    to: '/class',
     icon: 'cil-pencil',
   },
   //nav item (teacher)

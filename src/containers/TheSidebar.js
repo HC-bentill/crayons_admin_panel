@@ -1,5 +1,9 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import {
+  useSelector,
+  // useDispatch
+} from 'react-redux'
+import { setSideMenu, selectSideMenu } from 'src/features/sideMenuSlice'
 import {
   CCreateElement,
   CSidebar,
@@ -18,16 +22,17 @@ import CIcon from '@coreui/icons-react'
 import navigation from './_nav'
 
 const TheSidebar = () => {
-  const dispatch = useDispatch()
-  const show = useSelector(state => state.sidebarShow)
+  // const dispatch = useDispatch()
+  const sideMenu = useSelector( selectSideMenu )
+  console.log('sidemenu = ', sideMenu );
 
   return (
     <CSidebar
-      show={show}
-      // minimize={true}
+      show={sideMenu}
+      minimize={true}
       colorScheme="light"
       // style={{background:"#261b87"}}
-      onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
+      // onShowChange={dispatch(setSideMenu(true))}
     >
       <CSidebarBrand className="d-md-down-none" to="/">
         {/* <CIcon
